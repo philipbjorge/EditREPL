@@ -5,7 +5,7 @@ component from his ruby gem [Utility Belt](http://utilitybelt.rubyforge.org/).
 EditREPL allows you to run a terminal based editor inside your REPL session to
 interactively edit code.
 
-![video preview](https://raw.github.com/philipbjorge/EditREPL/master/requirements.txt)
+![video preview](https://raw.github.com/philipbjorge/EditREPL/master/preview.gif)
 [Video](http://ascii.io/a/2496)
 
 ##Installation
