@@ -40,7 +40,7 @@ to the executable as follows:
 This will create a binding to the function cli-textmate for you to call.
 
 ##Etc
-By Philip Bjorge
+By [Philip Bjorge](http://philipbjorge.com)
 
 Released under BSD License
 
