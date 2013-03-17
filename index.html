@@ -1,39 +1,46 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>EditREPL by philipbjorge</title>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="EditREPL : A port of InteractiveEditor to Python from Giles Bowkett's Utility Belt ruby gem." />
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>EditREPL</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>EditREPL</h1>
-        <p>A port of InteractiveEditor to Python from Giles Bowkett's Utility Belt ruby gem.</p>
 
-        <p class="view"><a href="https://github.com/philipbjorge/EditREPL">View the Project on GitHub <small>philipbjorge/EditREPL</small></a></p>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/philipbjorge/EditREPL">View on GitHub</a>
 
+          <h1 id="project_title">EditREPL</h1>
+          <h2 id="project_tagline">A port of InteractiveEditor to Python from Giles Bowkett's Utility Belt ruby gem.</h2>
 
-        <ul>
-          <li><a href="https://github.com/philipbjorge/EditREPL/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/philipbjorge/EditREPL/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/philipbjorge/EditREPL">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/philipbjorge/EditREPL/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/philipbjorge/EditREPL/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <p>EditREPL is a port of Giles Bowkett's
 <a href="http://utilitybelt.rubyforge.org/svn/lib/utility_belt/interactive_editor.rb">InteractiveEditor</a>
 component from his ruby gem <a href="http://utilitybelt.rubyforge.org/">Utility Belt</a>.</p>
 
 <p>EditREPL allows you to run a terminal based editor inside your REPL session to
 interactively edit code.</p>
+
+<p><img src="https://raw.github.com/philipbjorge/EditREPL/master/preview.gif" alt="video preview"></p>
+
+<p><a href="http://ascii.io/a/2496">Video</a></p>
 
 <h2>Installation</h2>
 
@@ -80,6 +87,11 @@ to the executable as follows:</p>
 
 <p>This will create a binding to the function cli-textmate for you to call.</p>
 
+<h2>How does it work?</h2>
+
+<p>Check out the literate code <a href="http://htmlpreview.github.com/?https://github.com/philipbjorge/EditREPL/blob/master/docs/doc.html">here</a> or 
+clone the repo and checkout out the docs folder.</p>
+
 <h2>Etc</h2>
 
 <p>By <a href="http://philipbjorge.com">Philip Bjorge</a></p>
@@ -88,12 +100,16 @@ to the executable as follows:</p>
 
 <p><a href="https://github.com/philipbjorge/EditREPL">https://github.com/philipbjorge/EditREPL</a></p>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/philipbjorge">philipbjorge</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">EditREPL maintained by <a href="https://github.com/philipbjorge">philipbjorge</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+
               <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -104,6 +120,7 @@ to the executable as follows:</p>
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
+
 
   </body>
 </html>
