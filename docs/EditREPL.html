@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>EditREPL.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id="background"></div>
+<div id='container'>
+  <div class='section'>
+    <div class='docs'><h1>EditREPL.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>EditREPL is a port of Giles Bowkett's
+<a href="http://utilitybelt.rubyforge.org/svn/lib/utility_belt/interactive_editor.rb">InteractiveEditor</a>
+component from his ruby gem <a href="http://utilitybelt.rubyforge.org/">Utility Belt</a>.</p>
+<p>EditREPL allows you to run a terminal based editor inside your REPL session to
+interactively edit code.</p>
+<h2>Basic Usage</h2>
+<p>To include it in your session, import the module and call the editor function:</p>
+<pre><code>from EditREPL import *
+vim()
+</code></pre>
+<p>After you save, the buffer will be executed in the current REPL context.</p>
+<h2>Advanced Usage</h2>
+<p>By default it uses the editor defined as your EDITOR environment variable, but
+if that isn't defined it tries the following editors in order:</p>
+<pre><code>["vim", "vi", "emacs", "nano", "pico", "ed"]
+</code></pre>
+<p>To manually set your editor after initialization, supply the name or full path
+to the executable as follows:</p>
+<pre><code>ER.editor = "cli-textmate"
+</code></pre>
+<p>This will create a binding to the function cli-textmate for you to call.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">EditREPL</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>imports are being done inside the class to avoid polluting the global
+namespace any more then necessary.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="kn">import</span> <span class="nn">os</span>
+
+    <span class="n">_editor</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">_tmp_file</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">_candidates</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;vim&quot;</span><span class="p">,</span> <span class="s">&quot;vi&quot;</span><span class="p">,</span> <span class="s">&quot;emacs&quot;</span><span class="p">,</span> <span class="s">&quot;nano&quot;</span><span class="p">,</span> <span class="s">&quot;pico&quot;</span><span class="p">,</span> <span class="s">&quot;ed&quot;</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">default_editor</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;EDITOR&#39;</span><span class="p">)):</span>
+        <span class="kn">import</span> <span class="nn">tempfile</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_editor</span> <span class="o">=</span> <span class="n">default_editor</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_determine_editor</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_file</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">install_hooks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old_editor</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">inspect</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <p>Grab the outermost stack frame so we have the REPL's scope
+This trickery needs to be done because using globals()/locals()
+as default arguments meant they only get executed once on function
+definition. We need it updated on each invocation.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">outermost_frame</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getouterframes</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">())[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      <p>Unbind the old editor method</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">if</span> <span class="n">old_editor</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">old_editor</span> <span class="ow">in</span> <span class="n">outermost_frame</span><span class="o">.</span><span class="n">f_locals</span><span class="p">:</span>
+                <span class="k">del</span> <span class="n">outermost_frame</span><span class="o">.</span><span class="n">f_locals</span><span class="p">[</span><span class="n">old_editor</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">old_editor</span> <span class="ow">in</span> <span class="n">outermost_frame</span><span class="o">.</span><span class="n">f_globals</span><span class="p">:</span>
+                <span class="k">del</span> <span class="n">outermost_frame</span><span class="o">.</span><span class="n">f_globals</span><span class="p">[</span><span class="n">old_editor</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      <p>Bind the new editor method</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">print</span> <span class="s">&quot;Binding editor to </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="n">ER</span><span class="o">.</span><span class="n">editor</span>
+        <span class="n">outermost_frame</span><span class="o">.</span><span class="n">f_locals</span><span class="p">[</span><span class="n">ER</span><span class="o">.</span><span class="n">editor</span><span class="p">]</span> <span class="o">=</span> <span class="n">ER</span><span class="o">.</span><span class="n">exec_editor</span>
+        <span class="n">outermost_frame</span><span class="o">.</span><span class="n">f_globals</span><span class="p">[</span><span class="n">ER</span><span class="o">.</span><span class="n">editor</span><span class="p">]</span> <span class="o">=</span> <span class="n">ER</span><span class="o">.</span><span class="n">exec_editor</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">exec_editor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">subprocess</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-9'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-9'>#</a>
+      </div>
+      <p>make sure you use self._editor because self.editor removes any path information.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_editor</span><span class="p">,</span> <span class="n">f</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_file</span><span class="o">.</span><span class="n">name</span><span class="p">])</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-10'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-10'>#</a>
+      </div>
+      <p>reload repl using the outermost stack frame as its environment.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="kn">import</span> <span class="nn">inspect</span>
+        <span class="n">outermost_frame</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getouterframes</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">())[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="nb">execfile</span><span class="p">(</span><span class="n">f</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_file</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                 <span class="n">outermost_frame</span><span class="o">.</span><span class="n">f_globals</span><span class="p">,</span> <span class="n">outermost_frame</span><span class="o">.</span><span class="n">f_locals</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-11'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-11'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">_determine_editor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-12'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-12'>#</a>
+      </div>
+      <p>return the first editor from our candidates list that exists.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="kn">from</span> <span class="nn">distutils.spawn</span> <span class="kn">import</span> <span class="n">find_executable</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_candidates</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">find_executable</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">find_executable</span><span class="p">(</span><span class="n">e</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-13'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-13'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">editor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-14'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-14'>#</a>
+      </div>
+      <p>returns the editor with preceding path removed.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">split</span>
+        <span class="k">return</span> <span class="n">split</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_editor</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-15'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-15'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="nd">@editor.setter</span>
+    <span class="k">def</span> <span class="nf">editor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">old_editor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">editor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_editor</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">install_hooks</span><span class="p">(</span><span class="n">old_editor</span><span class="p">)</span>
+
+
+<span class="n">ER</span> <span class="o">=</span> <span class="n">EditREPL</span><span class="p">()</span>
+<span class="n">ER</span><span class="o">.</span><span class="n">install_hooks</span><span class="p">()</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>
