@@ -6,6 +6,7 @@ EditREPL allows you to run a terminal based editor inside your REPL session to
 interactively edit code.
 
 ![video preview](https://raw.github.com/philipbjorge/EditREPL/master/preview.gif)
+
 [Video](http://ascii.io/a/2496)
 
 ##Installation
