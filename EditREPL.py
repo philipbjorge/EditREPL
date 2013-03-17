@@ -15,11 +15,18 @@ To include it in your session, import the module and call the editor function:
 After you save, the buffer will be executed in the current REPL context.
 
 ##Advanced Usage
+###Can I edit any file?
+Yes, just call the editor function with the filename you want to edit.
+
+    vim("myfile.py")
+
+###How does EditREPL choose your editor?
 By default it uses the editor defined as your EDITOR environment variable, but
 if that isn't defined it tries the following editors in order:
 
     ["vim", "vi", "emacs", "nano", "pico", "ed"]
 
+###Can I change my editor?
 To manually set your editor after initialization, supply the name or full path
 to the executable as follows:
 

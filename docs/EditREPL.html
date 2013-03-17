@@ -29,10 +29,16 @@ vim()
 </code></pre>
 <p>After you save, the buffer will be executed in the current REPL context.</p>
 <h2>Advanced Usage</h2>
+<h3>Can I edit any file?</h3>
+<p>Yes, just call the editor function with the filename you want to edit.</p>
+<pre><code>vim("myfile.py")
+</code></pre>
+<h3>How does EditREPL choose your editor?</h3>
 <p>By default it uses the editor defined as your EDITOR environment variable, but
 if that isn't defined it tries the following editors in order:</p>
 <pre><code>["vim", "vi", "emacs", "nano", "pico", "ed"]
 </code></pre>
+<h3>Can I change my editor?</h3>
 <p>To manually set your editor after initialization, supply the name or full path
 to the executable as follows:</p>
 <pre><code>ER.editor = "cli-textmate"
