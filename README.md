@@ -8,7 +8,7 @@ interactively edit code.
 ##Basic Usage
 To include it in your session, import the module and call the editor function:
 
-    import EditREPL
+    import editrepl
     vim()
 
 After you save, the buffer will be executed in the current REPL context.
