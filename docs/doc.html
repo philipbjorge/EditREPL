@@ -22,9 +22,14 @@
 component from his ruby gem <a href="http://utilitybelt.rubyforge.org/">Utility Belt</a>.</p>
 <p>EditREPL allows you to run a terminal based editor inside your REPL session to
 interactively edit code.</p>
+<h2>Installation</h2>
+<p>Installation is easy using either pip or easy_install.</p>
+<pre><code>easy_install EditREPL
+pip install EditREPL
+</code></pre>
 <h2>Basic Usage</h2>
 <p>To include it in your session, import the module and call the editor function:</p>
-<pre><code>from EditREPL import *
+<pre><code>import editrepl
 vim()
 </code></pre>
 <p>After you save, the buffer will be executed in the current REPL context.</p>
@@ -45,9 +50,9 @@ to the executable as follows:</p>
 </code></pre>
 <p>This will create a binding to the function cli-textmate for you to call.</p>
 <h2>Etc</h2>
-<p>By Philip Bjorge
-Released under BSD License
-https://github.com/philipbjorge/EditREPL</p>
+<p>By Philip Bjorge</p>
+<p>Released under BSD License</p>
+<p>https://github.com/philipbjorge/EditREPL</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre></pre></div>

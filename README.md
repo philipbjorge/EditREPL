@@ -5,6 +5,12 @@ component from his ruby gem [Utility Belt](http://utilitybelt.rubyforge.org/).
 EditREPL allows you to run a terminal based editor inside your REPL session to
 interactively edit code.
 
+##Installation
+Installation is easy using either pip or easy_install.
+
+    easy_install EditREPL
+    pip install EditREPL
+
 ##Basic Usage
 To include it in your session, import the module and call the editor function:
 
@@ -35,5 +41,7 @@ This will create a binding to the function cli-textmate for you to call.
 
 ##Etc
 By Philip Bjorge
+
 Released under BSD License
+
 https://github.com/philipbjorge/EditREPL

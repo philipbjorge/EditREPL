@@ -6,7 +6,7 @@ echo '' >> doc.docpy
 echo '"""' >> doc.docpy
 echo '' >> doc.docpy
 echo '' >> doc.docpy
-cat *.py >> doc.docpy
+cat editrepl/*.py >> doc.docpy
 
 mv doc.docpy doc.py
 pycco doc.py
