@@ -51,6 +51,8 @@ to the executable as follows:</p>
 <pre><code>ER.editor = "cli-textmate"
 </code></pre>
 <p>This will create a binding to the function cli-textmate for you to call.</p>
+<h3>What REPLs does it work with?</h3>
+<p>Only the default python interpreter. iPython and bPython are confirmed to not work.</p>
 <h2>How does it work?</h2>
 <p>Check out the literate code <a href="http://htmlpreview.github.com/?https://github.com/philipbjorge/EditREPL/blob/master/docs/doc.html">here</a> or 
 clone the repo and checkout out the docs folder.</p>
@@ -104,7 +106,7 @@ namespace any more then necessary.</p>
       <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">default_editor</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;EDITOR&#39;</span><span class="p">)):</span>
         <span class="kn">import</span> <span class="nn">tempfile</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_editor</span> <span class="o">=</span> <span class="n">default_editor</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_determine_editor</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_file</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">()</span></pre></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_file</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">suffix</span><span class="o">=</span><span class="s">&quot;.py&quot;</span><span class="p">)</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>

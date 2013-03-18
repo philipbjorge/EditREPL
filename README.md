@@ -43,6 +43,9 @@ to the executable as follows:
 
 This will create a binding to the function cli-textmate for you to call.
 
+###What REPLs does it work with?
+Only the default python interpreter. iPython and bPython are confirmed to not work.
+
 ##How does it work?
 Check out the literate code [here](http://htmlpreview.github.com/?https://github.com/philipbjorge/EditREPL/blob/master/docs/doc.html) or 
 clone the repo and checkout out the docs folder.

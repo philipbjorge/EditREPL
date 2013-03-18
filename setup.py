@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='EditREPL',
-    version='2013.03.17',
+    version='2013.03.17.1',
     author='Philip Bjorge',
     author_email='philipbjorge@gmail.com',
     packages=['editrepl'],

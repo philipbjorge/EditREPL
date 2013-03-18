@@ -10,7 +10,7 @@ class EditREPL(object):
     def __init__(self, default_editor=os.environ.get('EDITOR')):
         import tempfile
         self._editor = default_editor or self._determine_editor()
-        self._tmp_file = tempfile.NamedTemporaryFile()
+        self._tmp_file = tempfile.NamedTemporaryFile(suffix=".py")
 
     def install_hooks(self, old_editor=None):
         import inspect
