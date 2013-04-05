@@ -17,7 +17,8 @@
       <div class='octowrap'>
         <a class='octothorpe' href='#section-0'>#</a>
       </div>
-      <p>EditREPL is a port of Giles Bowkett's
+      <h1>EditREPL</h1>
+<p>EditREPL is a port of Giles Bowkett's
 <a href="http://utilitybelt.rubyforge.org/svn/lib/utility_belt/interactive_editor.rb">InteractiveEditor</a>
 component from his ruby gem <a href="http://utilitybelt.rubyforge.org/">Utility Belt</a>.</p>
 <p>EditREPL allows you to run a terminal based editor inside your REPL session to
@@ -29,6 +30,8 @@ interactively edit code.</p>
 <pre><code>easy_install EditREPL
 pip install EditREPL
 </code></pre>
+<h2>Supported Environments</h2>
+<p>EditREPL is Python2 and Python3 compatible with the default interactive shell.</p>
 <h2>Basic Usage</h2>
 <p>To include it in your session, import the module and call the editor function:</p>
 <pre><code>import editrepl
@@ -162,7 +165,7 @@ definition. We need it updated on each invocation.</p>
       <p>Bind the new editor method</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>        <span class="k">print</span> <span class="s">&quot;Binding editor to </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="n">ER</span><span class="o">.</span><span class="n">editor</span>
+      <div class="highlight"><pre>        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Binding editor to </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="n">ER</span><span class="o">.</span><span class="n">editor</span><span class="p">)</span>
         <span class="n">outermost_frame</span><span class="o">.</span><span class="n">f_locals</span><span class="p">[</span><span class="n">ER</span><span class="o">.</span><span class="n">editor</span><span class="p">]</span> <span class="o">=</span> <span class="n">ER</span><span class="o">.</span><span class="n">exec_editor</span>
         <span class="n">outermost_frame</span><span class="o">.</span><span class="n">f_globals</span><span class="p">[</span><span class="n">ER</span><span class="o">.</span><span class="n">editor</span><span class="p">]</span> <span class="o">=</span> <span class="n">ER</span><span class="o">.</span><span class="n">exec_editor</span></pre></div>
     </div>
@@ -177,6 +180,9 @@ definition. We need it updated on each invocation.</p>
     </div>
     <div class='code'>
       <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">exec_editor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">f</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_file</span><span class="o">.</span><span class="n">name</span>
+
         <span class="kn">import</span> <span class="nn">subprocess</span></pre></div>
     </div>
   </div>
@@ -189,7 +195,7 @@ definition. We need it updated on each invocation.</p>
       <p>make sure you use self._editor because self.editor removes any path information.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>        <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_editor</span><span class="p">,</span> <span class="n">f</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_file</span><span class="o">.</span><span class="n">name</span><span class="p">])</span></pre></div>
+      <div class="highlight"><pre>        <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_editor</span><span class="p">,</span> <span class="n">f</span><span class="p">])</span></pre></div>
     </div>
   </div>
   <div class='clearall'></div>
@@ -203,7 +209,7 @@ definition. We need it updated on each invocation.</p>
     <div class='code'>
       <div class="highlight"><pre>        <span class="kn">import</span> <span class="nn">inspect</span>
         <span class="n">outermost_frame</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getouterframes</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">())[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-        <span class="nb">execfile</span><span class="p">(</span><span class="n">f</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_file</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="k">exec</span><span class="p">(</span><span class="nb">compile</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">f</span><span class="p">,</span> <span class="s">&#39;exec&#39;</span><span class="p">),</span>
                  <span class="n">outermost_frame</span><span class="o">.</span><span class="n">f_globals</span><span class="p">,</span> <span class="n">outermost_frame</span><span class="o">.</span><span class="n">f_locals</span><span class="p">)</span></pre></div>
     </div>
   </div>

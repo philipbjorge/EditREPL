@@ -1,3 +1,4 @@
+#EditREPL
 EditREPL is a port of Giles Bowkett's
 [InteractiveEditor](http://utilitybelt.rubyforge.org/svn/lib/utility_belt/interactive_editor.rb)
 component from his ruby gem [Utility Belt](http://utilitybelt.rubyforge.org/).
@@ -14,6 +15,9 @@ Installation is easy using either pip or easy_install.
 
     easy_install EditREPL
     pip install EditREPL
+
+##Supported Environments
+EditREPL is Python2 and Python3 compatible with the default interactive shell.
 
 ##Basic Usage
 To include it in your session, import the module and call the editor function:
