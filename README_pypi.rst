@@ -12,7 +12,6 @@ session to interactively edit code.
 .. figure:: https://raw.github.com/philipbjorge/EditREPL/master/preview.gif
    :alt: video preview
 
-   video preview
 `Video <http://ascii.io/a/2496>`__
 
 Installation

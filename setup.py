@@ -10,6 +10,5 @@ setup(
     url='https://github.com/philipbjorge/EditREPL',
     license='LICENSE.txt',
     description='Use your CLI text editor from within the Python REPL.',
-    long_description=open('README_pypi.rst').read(),
-    install_requires=[],
+    long_description=open('README_pypi.rst').read()
 )
