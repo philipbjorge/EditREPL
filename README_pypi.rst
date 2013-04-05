@@ -96,6 +96,10 @@ Etc
 
 By `Philip Bjorge <http://philipbjorge.com>`__
 
+**Contributors**
+
+-  rpk512
+
 Released under BSD License
 
 https://github.com/philipbjorge/EditREPL

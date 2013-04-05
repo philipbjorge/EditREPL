@@ -57,6 +57,10 @@ clone the repo and checkout out the docs folder.
 ##Etc
 By [Philip Bjorge](http://philipbjorge.com)
 
+**Contributors**
+
+* rpk512
+
 Released under BSD License
 
 https://github.com/philipbjorge/EditREPL
