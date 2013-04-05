@@ -29,19 +29,22 @@ class EditREPL(object):
                 del outermost_frame.f_globals[old_editor]
 
         # Bind the new editor method
-        print "Binding editor to %s." % ER.editor
+        print("Binding editor to %s." % ER.editor)
         outermost_frame.f_locals[ER.editor] = ER.exec_editor
         outermost_frame.f_globals[ER.editor] = ER.exec_editor
 
     def exec_editor(self, f=None):
+        if f is None:
+            f = self._tmp_file.name
+
         import subprocess
         # make sure you use self._editor because self.editor removes any path information.
-        subprocess.call([self._editor, f or self._tmp_file.name])
+        subprocess.call([self._editor, f])
 
         # reload repl using the outermost stack frame as its environment.
         import inspect
         outermost_frame = inspect.getouterframes(inspect.currentframe())[-1][0]
-        execfile(f or self._tmp_file.name,
+        exec(compile(open(f).read(), f, 'exec'),
                  outermost_frame.f_globals, outermost_frame.f_locals)
 
     def _determine_editor(self):
