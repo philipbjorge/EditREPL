@@ -2,6 +2,7 @@
 CHANGES.txt
 LICENSE.txt
 README.md
+README_pypi.rst
 requirements.txt
 setup.py
 docs/doc.html

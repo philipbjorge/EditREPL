@@ -1,3 +1,4 @@
+v 2013.06.20   -- Included forgotten README.rst
 v 2013.04.05   -- Added python3 support (Contributed by rpk512)
 v 2013.03.17.1 -- Changed temp file to .py to trigger syntax highlighting
 v 2013.03.17   -- Initial Release
